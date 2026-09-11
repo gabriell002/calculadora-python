@@ -88,42 +88,6 @@ Normal: 1
 Alerta: 0
 Crítico: 1
 ...
-⚠️ Limitações e bug conhecido no código atual
-O relatório é impresso a cada leitura, e não apenas no final: o bloco de print do relatório está indentado dentro do while, no mesmo nível do bloco de verificação da condição de parada — mesmo estando comentado como # relatório final. Na prática, ele é executado em toda iteração do laço, e não apenas quando o monitoramento é encerrado.
-Sem tratamento de entrada inválida: como o script usa int(input(...)), digitar um valor não numérico (ex.: letras) gera um ValueError e encerra o programa abruptamente.
-Sem opção de saída manual: não há como o usuário interromper o monitoramento voluntariamente (ex.: digitando "sair"); o loop só termina com três leituras críticas seguidas.
-Sugestão de correção (relatório apenas ao final)
-python
-while True:
-    bpm = int(input("Digite a frequência cardíaca (bpm): "))
-    total_leituras += 1
-
-    if 60 <= bpm <= 100:
-        print("Classificação: Normal")
-        normal += 1
-        criticos_consecutivos = 0
-    elif 101 <= bpm <= 120:
-        print("Classificação: Alerta")
-        alerta += 1
-        criticos_consecutivos = 0
-    elif bpm > 120:
-        print("Classificação: Crítico")
-        critico += 1
-        criticos_consecutivos += 1
-    else:
-        print("Valor fora do padrão")
-        criticos_consecutivos = 0
-
-    if criticos_consecutivos == 3:
-        print("\nTrês estados críticos consecutivos detectados!")
-        break
-
-# relatório final (fora do while, roda só uma vez ao terminar)
-print("\n===== RELATÓRIO =====")
-print("Total de leituras:", total_leituras)
-print("Normal:", normal)
-print("Alerta:", alerta)
-print("Crítico:", critico)
 
 Tecnologias utilizadas
 Python 3 (apenas biblioteca padrão, sem dependências externas)
