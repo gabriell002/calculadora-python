@@ -1,15 +1,8 @@
-n1 = int(input('Digite um número: '))
-n2 = int(input('Digite o segundo número: '))
-operacao = input('Digite a operação: ')
-
-match operacao:
-    case '+':
-        res = n1 + n2
-    case '-':
-        res = n1 - n2
-    case '*':
-        res = n1 * n2
-    case '/':
-        res = n1 / n2
-
-print(f'Resultado é igual a {res}')
+m = float(input("Digite a média: "))
+f = float(input("Digite o percentual de frequencia: "))
+if f < 75:
+    print(("Reprovado por falta!"))
+elif m < 6:
+    print("Reprovado por nota!")
+else:
+    print("Aprovado")
